@@ -87,6 +87,7 @@ func Printprogress(path string, total float64) {
 	if size == 0 {
 		size = 1
 	}
+	file.Close()
 	var percent float64 = float64(size) / float64(total) * 100 //Get the percentage of size to total
 	barpercent := math.Ceil(percent/10) * 10                   //Ceil the percentage to 10
 	var bar string
@@ -178,6 +179,7 @@ func DLfile(url string, saveas string, size int64) {
 	_, err = io.Copy(file, fil.Body)
 	checkerror(err)
 	done = true
+	file.Close()
 	switch saveas {
 	case "video":
 		videofile = string(filename) + ".mp4"
